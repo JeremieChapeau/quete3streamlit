@@ -18,6 +18,7 @@ def login():
     st.write("Le nom d'utilisateur est **WILDER** et le mot de passe est **PONEY**.")
     username = st.text_input("Nom d'utilisateur")
     password = st.text_input("Mot de passe", type="password")
+    
     if st.button("Se connecter"):
         if authenticate(username, password):
             st.session_state.authenticated = True
@@ -62,11 +63,12 @@ def navigation():
 
 # Vérifier si l'utilisateur est authentifié
 if st.session_state.authenticated:
+    # Si l'utilisateur est authentifié, afficher la navigation
     navigation()  # Afficher la barre de navigation
     if st.session_state.page == "Accueil":
         accueil_page()  # Afficher la page d'accueil
     elif st.session_state.page == "Poneys":
         album_page()  # Afficher l'album de poneys
 else:
-    login()  # Afficher l'interface de login si non authentifié
-
+    # Si l'utilisateur n'est pas authentifié, afficher l'écran de login
+    login()
